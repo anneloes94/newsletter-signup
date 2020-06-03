@@ -1,6 +1,8 @@
 const bodyParser = require("body-parser")
+require('dotenv').config()
 const express = require("express")
 const request = require("request")
+const https = require("https")
 
 const app = express()
 
@@ -15,8 +17,8 @@ app.post("/", function(req, res) {
 
   const firstName = req.body.firstName
   const lastName = req.body.lastName
-  const emailAddress = req.body.emailAddress  
-
+  const emailAddress = req.body.emailAddress
+  
   const data = {
     members: [
       {
@@ -35,11 +37,21 @@ app.post("/", function(req, res) {
   const apiKey = process.env.MAILCHIMP_KEY
   const listID = process.env.LIST_ID
 
-  const url = `https://usX.api.mailchimp.com/3.0/lists/`
+  const url = `https://us10.api.mailchimp.com/3.0/lists/${listID}`
+  
+  const options = {
+    method: "POST",
+    auth: `anneloes94:${apiKey}`
+  }
 
-  https.request(url, options, (response) => {
-
+  const request = https.request(url, options, (response) => {
+    response.on("data", (data) => {
+      console.log(JSON.parse(data))
+    })
   })
+
+  request.write(jsonData)
+  request.end()
 })
 
 app.listen(3000, function(){
