@@ -83,7 +83,7 @@
     <link href="./css/styles.css" rel="stylesheet" />
   </head>
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" method="POST" action="/">
       <img class="mb-4" src="./images/coffee.jpg" alt="" width="72" height="72" />
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
@@ -91,6 +91,7 @@
       <input
         type="text"
         class="form-control top"
+        name="firstName"
         placeholder="First Name"
         required
         autofocus
@@ -99,6 +100,7 @@
       <label for="inputLastName" class="sr-only">Last Name</label>
       <input
         type="text"
+        name="lastName"
         class="form-control middle"
         placeholder="Last Name"
         required
@@ -107,6 +109,7 @@
       <label for="inputEmail" class="sr-only">Email address</label>
       <input
         type="email"
+        name="emailAddress"
         class="form-control bottom"
         placeholder="Email address"
         required
